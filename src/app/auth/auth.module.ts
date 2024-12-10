@@ -25,7 +25,7 @@ import { PrimengModule } from '../primeng/primeng.module';
     AuthRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-   // ButtonModule,
+    // ButtonModule,
     //PasswordModule,
     PrimengModule
   ]

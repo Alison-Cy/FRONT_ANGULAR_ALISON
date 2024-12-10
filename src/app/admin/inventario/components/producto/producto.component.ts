@@ -8,8 +8,8 @@ import { ProductoService } from '../../services/producto.service';
 })
 export class ProductoComponent {
 
- private productoService= inject(ProductoService)
-
+  private productoService= inject(ProductoService)
+  
   categorias: any = [
     { name: 'Ropa Dama', code: 'RD' },
     { name: 'Ropa Caballero', code: 'RC' },
@@ -17,17 +17,12 @@ export class ProductoComponent {
     { name: 'Tecnología', code: 'Tec' },
     { name: 'Hogar', code: 'Hgr' }
 ];
-  products:any[]=[
-    {id:1, nombre: "teclado,", precio:500.00, categoria_id: 5, stock: 12, estado: "COMPLETO"},
-    {id:1, nombre: "teclado,", precio:500.00, categoria_id: 5, stock: 12, estado: "COMPLETO"},
-    {id:1, nombre: "teclado,", precio:500.00, categoria_id: 5, stock: 12, estado: "COMPLETO"},
-    {id:1, nombre: "teclado,", precio:500.00, categoria_id: 5, stock: 12, estado: "COMPLETO"},
-    {id:1, nombre: "teclado,", precio:500.00, categoria_id: 5, stock: 12, estado: "COMPLETO"}
-  ];
-  cols: any[]=[];
-  
+
+  products:any []=[];
+  cols: any []=[];
+
   constructor(){
-    this.productoService.funListar2().subscribe(
+    this.productoService.funListar().subscribe(
       (res:any)=>{
         this.products=res.data
       }
@@ -35,17 +30,12 @@ export class ProductoComponent {
 
   }
   openNew(){
-
+    
   }
-
   editProduct(prod:any){
 
   }
-
-  deleteProduct(prod:any){
+  deleteProduct(prod: any){
 
   }
-
-  
-
 }
