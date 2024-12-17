@@ -25,16 +25,16 @@
                 <div class="text-center mb-5">
                     <img src="assets/demo/images/login/avatar.png" alt="Image" height="50" class="mb-3">
                     <div class="text-900 text-3xl font-medium mb-3">BIENVENIDA ALISON</div>
-                    <span class="text-600 font-medium">Sign in to continue</span>
+                    <span class="text-600 font-medium">inicia sesión para continuar</span>
                 </div>
                 <form [formGroup]="loginForm">
                     <div>
-                        <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
+                        <label for="email1" class="block text-900 text-xl font-medium mb-2">Correo</label>
                         <input id="email1" formControlName="mail" type="text" placeholder="Email address" pInputText
                             class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                         <label for="password1" 
-                            class="block text-900 font-medium text-xl mb-2">Password</label>
+                            class="block text-900 font-medium text-xl mb-2">Contraseña</label>
                         <p-password id="password1" placeholder="Password" styleClass="mb-5" formControlName="password"
                             inputStyleClass="w-full p-3 md:w-30rem"></p-password>
 
@@ -48,11 +48,11 @@
                                 </label>
                             </div>
                             <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" 
-   (click)="openForgotPasswordModal()">Olvidaste tu contraseña?</a>
+                            (click)="openForgotPasswordModal()">Olvidaste tu contraseña?</a>
                         </div>
-                        <button pButton pRipple label="Iniciar sesion" class="w-full p-3 text-xl" [routerLink]="['/']">
-                        </button>
+                        <button pButton pRipple label="Iniciar sesion" class="w-full p-3 text-xl" [routerLink]="['/']"></button>
                     </div>
+                    <a [routerLink]="['/auth/register']">Registrarse</a>
                 </form>
             </div>
         </div>
@@ -62,7 +62,7 @@
 <p-dialog header="Forgot Password" [(visible)]="forgotPasswordModal" [modal]="true" [closable]="false" [responsive]="true">
     <form [formGroup]="forgotPasswordForm">
         <div class="mb-3">
-            <label for="forgotEmail" class="block text-900 text-xl font-medium mb-2">Enter your email</label>
+            <label for="forgotEmail" class="block text-900 text-xl font-medium mb-2">Ingresa tu correo electrónico</label>
             <input id="forgotEmail" formControlName="email" type="email" placeholder="Email address" pInputText
                 class="w-full" />
         </div>
@@ -70,6 +70,12 @@
             <button pButton label="Send" (click)="sendForgotPasswordEmail()" [disabled]="!forgotPasswordForm.valid"></button>
             <button pButton label="Cancel" class="p-button-secondary" (click)="closeForgotPasswordModal()"></button>
         </p-footer>
-        
+       
     </form>
 </p-dialog>
+
+
+
+
+
+

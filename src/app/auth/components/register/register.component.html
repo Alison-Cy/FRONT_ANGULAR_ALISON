@@ -1,1 +1,69 @@
-<p>register works!</p>
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+
+        <div
+            style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <img src="assets/demo/images/login/avatar.png" alt="Image" height="50" class="mb-3">
+                <div>¡REGISTRATE!</div>
+                <span>Crea tu cuenta para comenzar</span>
+            </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="funRegistrar()">
+                <!-- Nombre -->
+                <div class="mb-6">
+                    <label for="name" class="block text-xl font-medium mb-2;">Nombre</label>
+                    <input id="name" type="text" formControlName="name" placeholder="Tu nombre" pInputText 
+                    class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    <div *ngIf="f['name']?.invalid && f['name']?.touched" class="text-red-500 text-sm">
+                        El nombre es obligatorio y debe tener al menos 3 caracteres.
+                    </div>
+                </div>
+
+                <!-- Correo electrónico -->
+                <div class="mb-6">
+                    <label for="email" class="block text-xl font-medium mb-2;">Correo Electrónico</label>
+                    <input id="email" type="email" formControlName="email" placeholder="Correo electrónico" pInputText 
+                    class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    <div *ngIf="f['email']?.invalid && f['email']?.touched" class="text-red-500 text-sm">
+                        El correo es obligatorio y debe ser válido.
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="mb-6">
+                    <label for="password" class="block text-xl font-medium mb-2">Contraseña</label>
+                    <p-password id="password" formControlName="password" placeholder="Contraseña" 
+                    [ngClass]="['w-full', 'md:w-30rem', 'mb-5']" [ngStyle]="{'padding': '1rem'}"></p-password>
+                    <div *ngIf="f['password']?.invalid && f['password']?.touched" class="text-red-500 text-sm">
+                        La contraseña es obligatoria y debe tener al menos 6 caracteres.
+                    </div>
+                </div>
+
+                <!-- Confirmar contraseña -->
+                <div class="mb-6">
+                    <label for="confirmPassword" class="block text-xl font-medium mb-2;">Confirmar Contraseña</label>
+                    <p-password id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmar contraseña" 
+                    [ngClass]="['w-full', 'md:w-30rem', 'mb-5']" [ngStyle]="{'padding': '1rem'}"></p-password>
+                    <div *ngIf="f['confirmPassword']?.invalid && f['confirmPassword']?.touched || !passwordsMatch()" class="text-red-500 text-sm">
+                        Las contraseñas deben coincidir.
+                    </div>
+                </div>
+                <!-- Términos y condiciones -->
+                <div class="mb-6">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" formControlName="terms" class="mr-2" />
+                    </label>
+                    <div *ngIf="f['terms']?.invalid && f['terms']?.touched" class="text-red-500 text-sm">
+                        Debes aceptar los términos y condiciones.
+                    </div>
+                </div>
+
+                <!-- Botón de registro -->
+                <button pButton pRipple label="Registrar" class="w-full p-3 text-xl rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 transition duration-200" 
+                 [disabled]="!registerForm.valid" type="submit"></button>
+            </form>
+        </div>
+    </div>
+</div>

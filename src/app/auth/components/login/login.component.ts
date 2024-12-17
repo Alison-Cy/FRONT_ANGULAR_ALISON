@@ -3,26 +3,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   
-  private authService=inject(AuthService)
-  private router = inject(Router)
-  
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  loginForm=new FormGroup({
-    mail:new FormControl("", [Validators.email, Validators.required]),
-    password:new FormControl("", Validators.required),
-    rememberMe: new FormControl(false) // Nuevo control para 'Remember me'
-  })
+  loginForm = new FormGroup({
+    mail: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    rememberMe: new FormControl(false)
+  });
 
-  //Formulario de olvidar contrasenia
   forgotPasswordForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
   });
@@ -31,12 +27,12 @@ export class LoginComponent implements OnInit{
   forgotPasswordModal = false;
 
   ngOnInit() {
-    if(this.cargarCredenciales()){
+    if (this.cargarCredenciales()) {
       this.funIngresar();
     } // Carga en caso tenga la marca remember
-    
   }
-  
+
+  // Método para iniciar sesión
   funIngresar() {
     const formValue = this.loginForm.value;
     this.authService.loginConNest(formValue).subscribe(
@@ -59,16 +55,19 @@ export class LoginComponent implements OnInit{
     );
   }
 
+  // Verifica si las credenciales están almacenadas en localStorage
   cargarCredenciales() {
-    const rememberMe = localStorage.getItem('rememberMe') === 'true';
-    if (rememberMe) {
-      const mail = localStorage.getItem('mail');
-      const password = localStorage.getItem('password');
-      this.loginForm.patchValue({ mail, rememberMe, password });
-      return true;
-    }else{
-      return false;
+    // Verifica si estás en el lado del cliente (navegador)
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const rememberMe = localStorage.getItem('rememberMe') === 'true';
+      if (rememberMe) {
+        const mail = localStorage.getItem('mail');
+        const password = localStorage.getItem('password');
+        this.loginForm.patchValue({ mail, rememberMe, password });
+        return true;
+      }
     }
+    return false;
   }
 
   //abre el modal
@@ -97,5 +96,4 @@ export class LoginComponent implements OnInit{
       }
     );*/
   }
-  
 }
